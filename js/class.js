@@ -12,9 +12,8 @@
 class Chip {
     /* id is passed as parameter to determine if is is main chip, 
         switch chip, or message board chip*/
-    constructor(id, marginTopFix) {
+    constructor(id) {
         this.id = id;
-        this.marginTopFix = marginTopFix;
         this.getOffset();
     }
 
@@ -29,10 +28,10 @@ class Chip {
 
     /* getRelativeOffset get the border position of each chip. */
     // Relative to Parent, not to screen. left, right, top, and bottom
-    getRelativeOffset(offset = this.offset, marginTopFix = this.marginTopFix) {
+    getRelativeOffset(offset = this.offset) {
         this.left = offset.left;
         this.right = screenWidth - this.left;
-        this.top = offset.top - marginTopFix * screenHeight;
+        this.top = offset.top;
         this.bottom = screenHeight - this.top;
         this.getCorner();
     }
