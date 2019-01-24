@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-86138497-2');
+    </script>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/chip.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/animation.css">
+    <link rel="stylesheet" href="/css/draw.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/scrollbar.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="/lib/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/class.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/lib/js/bootstrap.min.js"></script>
+</head>
+
+<!-- Customized scrollbar on whole page view -->
+
+<body class="scrollbar scrollbar-tempting-azure">
+    <!-- Three blocks included -->
+    <div>
+        <!-- Block1 is designed based on circuit board and combinated animations of lines, circles, and polygons -->
+        <div id="block1" class="block">
+            <a href="#block2">
+                <div id="chipMain" class="chip chip-container">
+                    <h1>SQUAREINK</h1>
+                    <p>Click Here To Browse</p>
+                </div>
+            </a>
+            <svg id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                preserveAspectRatio="xMidYMid meet"></svg>
+            <svg id="svg1after" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                preserveAspectRatio="xMidYMid meet"></svg>
+            <canvas id="canvas1">
+        </div>
+
+        <!-- Block2 is designed based on Nintendo Switch with buttons and a screen for slides -->
+        <div id="block2" class="block">
+            <svg id="svg2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                preserveAspectRatio="xMidYMid meet"></svg>
+            <div id="chipProject" class="chip chip-container">
+                <h1>PROJECTS</h1>
+                <!-- Arrow buttons include 4 buttons: up, down, left, and right  -->
+                <div id="arrowButtons">
+                    <!-- Left button controls slide: go to previous slide -->
+                    <a href="">
+                        <div id="btnLeft" class="button button-arrow" href="#carousel" data-slide="prev">
+                            <p>Prev</p>
+                        </div>
+                    </a>
+                    <!-- Up button controls page slide: go to top-->
+                    <a href="#block1">
+                        <div id="btnUp" class="button button-arrow">
+                            <p>Top</p>
+                        </div>
+                    </a>
+                    <!-- Right button controls slide: go to next slide -->
+                    <a href="">
+                        <div id="btnRight" class="button button-arrow" href="#carousel" data-slide="next">
+                            <p>Next</p>
+                        </div>
+                    </a>
+                    <!-- Down button controls page slide: go to bottom-->
+                    <a href="#block3">
+                        <div id="btnDown" class="button button-arrow">
+                            <p>Bottom</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Central screen for slides, which display projects. Adapted from bootstrap -->
+                <div id="slideContainer">
+                    <div id="carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div id="item_grid" class="carousel-item active">
+                                <a href="#block2">
+                                    <img class="d-block w-100" src="image/grid.png" alt="First slide">
+                                </a>
+                            </div>
+                            <div id="item_squareink" class="carousel-item">
+                                <a href="#block2">
+                                    <img class="w-100" src="image/squareink.png" alt="Second slide">
+                                </a>
+
+                            </div>
+                            <div id="item_imdb" class="carousel-item">
+                                <a href="#block2">
+                                    <img class="w-100" src="image/imdb.png" alt="Third slide">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorations. Currently no functions for these buttons -->
+                <div id="actionButtons">
+                    <div id="btnA" class="button button-circle">A</div>
+                    <div id="btnB" class="button button-circle">B</div>
+                    <div id="btnX" class="button button-circle">X</div>
+                    <div id="btnY" class="button button-circle">Y</div>
+                </div>
+            </div>
+
+            <!-- Modal component, load projects dynamically -->
+            <div>
+                <span class="close">&times;</span>
+                <div id="myModal" class="modal">
+                    <!-- Content window for display projects -->
+                    <div class="modal-content">
+                        <div id="projectitem">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block3 is designed based on chatting application with functions such as loadMessage() and leaveMessage -->
+        <div id="block3" class="block">
+            <svg id="svg3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                preserveAspectRatio="xMidYMid meet"></svg>
+            <div id="chipMessage" class="chip chip-container">
+                <h1>MESSAGE</h1>
+                <!-- Content window contains a message board and a leaveMessage button -->
+                <div class="chip chip-content scrollbar scrollbar-tempting-azure" data-spy="scroll" data-target="#message"
+                    data-offset="0">
+                    <div id="corkboard">
+                        <!-- Display messages, which are dynamically loaded from database -->
+                        <div id="message">
+                        </div>
+                    </div>
+                </div>
+                <!-- Collapse button -->
+                <div id="sendBtn">
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body card-message">
+                            <form method="post" action="/php/send.php">
+                                <div class="text-white">
+                                    Your Name: <input type="text" name="username" maxlength="20"> <br /><br />
+                                    Message: <textarea type="text" name="message" rows="4" cols="50"></textarea>
+                                </div>
+                                <input class="button button-message" type="submit" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+                    <button class="button button-message" type="button" data-toggle="collapse" data-target="#collapseExample"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Leave a Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/path.js"></script>
+    <script src="/js/canvas.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/database.js"></script>
+</body>
+
+</html>

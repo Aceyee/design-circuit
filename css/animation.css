@@ -1,0 +1,65 @@
+@keyframes animate{to{stroke-dashoffset: 0;}}
+
+@-webkit-keyframes animate{to{stroke-dashoffset: 0;}}
+
+@-moz-keyframes animate{ to{stroke-dashoffset: 0; }}
+
+@keyframes btnTextFlash{
+    0% {
+        color: transparent;
+    }
+    20% {
+        color: aqua;
+    }
+    40%{
+        color: transparent;
+    }
+}
+
+@keyframes show{
+    0% {
+        color: transparent;
+        stroke: transparent;
+    }
+    100% {
+        color: aqua;
+        stroke:aqua;
+    }
+}
+
+@keyframes fade{
+    to{stroke-dashoffset: 0;}
+    85%{stroke: aqua; color: aqua}
+    100%{stroke: transparent; color: transparent}
+}
+
+@keyframes socket-fade{
+    50%{stroke: transparent}
+    55%{stroke: aqua}
+    100%{stroke: transparent}
+}
+
+@keyframes socket-fade-reverse{
+    0%{stroke: transparent}
+    10%{stroke: aqua}
+    85%{stroke:aqua}
+    100%{stroke: transparent}
+}
+
+@keyframes show-dark{
+    0% {
+        stroke: transparent;
+    }
+    100% {
+        stroke:#002222;
+    }
+}
+
+@keyframes flash{
+    0% {
+        color: transparent;
+    }
+    50% {
+        color: aqua;
+    }
+}

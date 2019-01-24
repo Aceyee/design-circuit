@@ -1,0 +1,76 @@
+/*  Name: chip.css
+ *  Author: Zihan Ye
+ *  Date: 2018-11-13
+ *  Description: style sheets for chip
+ */
+
+.chip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    z-index: 1;
+}
+
+.chip-container{
+    background-color: transparent;
+    color: transparent;
+    border-style: double;
+    border-width: 0.2rem;
+    border-radius: 2rem;
+    animation: show 1000ms ease forwards;
+    animation-delay: 2s;
+}
+
+.chip-content{
+    width:80%;
+    height: 80%;
+    margin:0 auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-top-left-radius:0.75rem;
+    border-bottom-left-radius:0.75rem;
+    border-top-right-radius:0.75rem;
+    border-bottom-right-radius:0.75rem;
+    color: black;
+}
+
+#chipMain{
+    width: 20rem; 
+    height: 20rem; 
+}
+
+#chipMain h1{
+    position: relative;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+#chipMain p{
+    position: relative;
+    top: 50%;
+    color: transparent;
+    animation: flash 2s linear infinite;
+    animation-delay: 2s;
+}
+
+#chipProject{
+    width: 90%;
+    height: 80%;
+    overflow: hidden;
+}
+
+#chipProject h1{
+    position: relative;
+}
+
+#chipMessage{
+    width: 90%;
+    height: 80%;
+    overflow: hidden;
+}
+
+#chipMessage h1{
+    position: relative;
+}

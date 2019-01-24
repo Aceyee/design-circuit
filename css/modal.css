@@ -1,0 +1,68 @@
+/*  Name: modal.css
+ *  Author: Zihan Ye
+ *  Description: style sheets for modal
+ */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1; /* Sit on top */
+    width: 90%;
+    height: 80%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    margin: 0 auto; 
+    border: 1px solid #888;
+    height: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-content-squareink{
+    color: white;
+    background:radial-gradient(#022B2F, black);
+}
+
+.modal-content-imdb{
+    color: #005283;
+    background: linear-gradient(#f9da32, #f9e032);
+}
+
+.modal-content-grid{
+    color: black;
+    background: linear-gradient(#9AE1F3, #F938E4);
+}
+
+.modal-content-natureforce{
+    color:white;
+    background: linear-gradient(-35deg, rgba(145, 107, 99, 0.5) 15%, rgba(184, 186, 111, 0.5) 25%, transparent 60%), linear-gradient(10deg, #916b63 9%, #b8ba6f 30%, #ed7c94 45%, #23529a 65%);
+}
+
+.modal-content h3{
+    margin: 2rem;  
+}
+
+.modal-content h5{
+    margin: 1rem;  
+}
+
+.modal-content p{
+    text-align:left;
+    margin-bottom: 0;  
+}
+
+.modal-content img{
+    height: 80%;  
+}
+
+.pageBody{
+    width: 80%;
+    margin: 0 auto;
+}

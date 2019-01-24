@@ -1,0 +1,108 @@
+.button{
+    width: 4rem;
+    height: 4rem;
+    color: aqua;   
+    background-color: transparent;
+    border-radius: 1rem;
+    border-style:solid;
+    border-color: aqua;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.button:hover{
+    background-color: aqua;
+    color: white;   
+}
+
+.button p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: transparent;
+    animation: btnTextFlash 8000ms linear infinite;
+}
+
+.button-arrow{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.button-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border-style:solid;
+    border-color: aqua;
+    font-size: 1.5rem;
+    color: aqua;
+    line-height: 4rem;
+    text-align: center;
+    background: transparent;
+}
+
+.button-message{
+    width: auto;
+    height: auto;
+    background: transparent;
+}
+
+#arrowButtons{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    width: 20%;
+    height: 100%;;
+}
+
+#btnLeft{transform: translate(-150%, -50%);}
+#btnUp{transform: translate(-50%,-150%);}
+#btnRight{transform: translate(50%, -50%);}
+#btnDown{transform: translate(-50%, 50%);}
+
+#actionButtons{
+    position: absolute;
+    left: 80%;
+    top:50%;
+    transform: translateY(-50%);
+    width: 20%;
+    height: 100%;;
+}
+
+#btnA{transform: translate(50%, -50%);}
+#btnB{transform: translate(-50%, 50%);}
+#btnX{transform: translate(-50%,-150%);}
+#btnY{transform: translate(-150%, -50%);}
+
+#sendBtn{
+    position: fixed;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align:center;
+    z-index: 1;
+}
+
+/* The Close Button */
+.close {
+    display: none;
+    position: absolute;
+    left: 90%;
+    top:10%;
+    color:red;
+    font-size: 4rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
