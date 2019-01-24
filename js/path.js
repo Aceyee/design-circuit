@@ -4,8 +4,6 @@
  *  Description: generate path given window width and height;
  *      path consists of numerious Point class: points (x,y)
  */
-
-
  
 /*****************************************************************************/
 /*              Introduction Animation Path for Blcok1                       */

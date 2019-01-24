@@ -5,6 +5,8 @@
  */
 
 /******************************* Constant *********************************/
+import Chip from '../module/chip.js';
+
 /* style settings */
 const strokeWidth = 5;
 const cannonballColor = "aqua";
