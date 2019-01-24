@@ -6,6 +6,7 @@
 
 /* drawVertices() will draw a polygon that contains at least two points */
 var drawVertices = function (svg, points, dash, brightness, moveCircleH, moveCircleV, slopeFix) {
+    var strokeWidth = 5;
     var circuitClass = "";
     var socketClass = "";
     var lastIndex = points.length - 1;
@@ -36,6 +37,7 @@ var drawVertices = function (svg, points, dash, brightness, moveCircleH, moveCir
 }
 
 var drawVerticesAfter = function (svg, points, dash, brightness, moveCircleH, moveCircleV, slopeFix, reverse = false) {
+    var strokeWidth = 5; 
     var circuitClass = "";
     var socketClass = "";
     var lastIndex = points.length - 1;
@@ -77,6 +79,8 @@ var drawVerticesAfter = function (svg, points, dash, brightness, moveCircleH, mo
     }
 
 }
+
+export {drawVertices, drawVerticesAfter};
 
 /* shiftPointsH() shifts points horizontally, given length */
 var shiftPointsH = function (points, length) {
