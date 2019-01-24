@@ -1,6 +1,7 @@
 /* Chip class is used to calculate and store the positions and offsets
     of chips such as main chip, switch chip, and message board chip*/
 import Point from './point.js';
+
 class Chip {
     /* id is passed as parameter to determine if is is main chip, 
         switch chip, or message board chip*/
@@ -24,8 +25,8 @@ class Chip {
         this.left = offset.left;
         this.right = this.left + this.width;
         this.top = offset.top;
-        this.bottom = this.top;
-        console.log(this.left + " "+ this.right);
+        this.bottom = this.top +this.height;
+        // console.log(this.left + " "+ this.right);
         this.getCorner();
     }
 
