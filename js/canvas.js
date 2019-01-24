@@ -58,12 +58,6 @@ var svg3 = document.getElementById("svg3"); // get svg1 element
 // create new Chip class: chipMain
 var chipMain = new Chip('chipMain', 0);
 
-// create new Chip class: chipProject
-var chipProject = new Chip('chipProject', 1);
-
-// create new Chip class: chipMessage
-var chipMessage = new Chip('chipMessage', 2);
-
 // divide the width by 9 for drawing socket (circle)
 var division = 9;
 var deltaChipMainX = chipMain.width / division;
@@ -89,14 +83,6 @@ bottomSide.init();
 leftSide.init();
 rightSide.init();
 topSide.init();
-
-// initialize paths for introduction animations on block2
-block2BottomSide.init();
-block2TopSide.init();
-
-// initialize paths for introduction animations on block3
-block3BottomSide.init();
-block3TopSide.init();
 
 // initialize paths for after-introduction random animations
 leftCenterSide.init();
