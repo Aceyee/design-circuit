@@ -1,6 +1,6 @@
 /* Chip class is used to calculate and store the positions and offsets
     of chips such as main chip, switch chip, and message board chip*/
-import {bottomSide, topSide, leftSide, rightSide, leftCenterSide} from '../js/path.js';
+import {bottomSide, topSide, leftSide, rightSide, leftCenterSide, leftBottomSide, rightCenterSide, rightBottomSide} from '../js/path.js';
 import { distance } from './utils.js';
 
 const second = 2;
@@ -96,6 +96,18 @@ class Circuit{
         leftCenterSide.init(this.chip, this.config);
         this.randomPaths.push(leftCenterSide.paths);
         this.randomPathsReverse.push(leftCenterSide.pathsReverse);
+
+        leftBottomSide.init(this.chip, this.config);
+        this.randomPaths.push(leftBottomSide.paths);
+        this.randomPathsReverse.push(leftBottomSide.pathsReverse);
+
+        rightCenterSide.init(this.chip, this.config);
+        this.randomPaths.push(rightCenterSide.paths);
+        this.randomPathsReverse.push(rightCenterSide.pathsReverse);
+
+        rightBottomSide.init(this.chip, this.config);
+        this.randomPaths.push(rightBottomSide.paths);
+        this.randomPathsReverse.push(rightBottomSide.pathsReverse);
     }
 }
 
