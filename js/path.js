@@ -20,6 +20,10 @@ var bottomSide = {
         this.screenWidth = config.screenWidth;
         this.dash = this.screenHeight - chip.bottom - chip.border;
         this.deltaChipX = chip.width / config.division;
+        this.paths = [];
+        this.calcLeftPath();
+        this.calcMidPath();
+        this.calcRightPath();
         // console.log(chip.width);
         // console.log(this.deltaChipX);
     },
@@ -27,27 +31,21 @@ var bottomSide = {
         var p1 = new Point(screenWidth / 2 - deltaChipX, screenHeight);
         var p2 = new Point(screenWidth / 2 - deltaChipX, chip.bottom + chip.border);
         this.leftPath = [p1, p2];
-        var pathIntro = [];
-        pathIntro.push(new Path(this.leftPath, this.dash, "bright", 0, 1, -1));
-        return pathIntro;
+        this.paths.push(new Path(this.leftPath, this.dash, "bright", 0, 1, -1));
     },
     calcMidPath: function (deltaChipX= this.deltaChipX) {
         this.midPath = copyPoints(this.leftPath);
         this.midPath = shiftPointsH(this.midPath, deltaChipX);
         var pointsArrayIntro = [];
         var dashArrayIntro = [];
-        var pathIntro = [];
         pointsArrayIntro.push(this.midPath);
         dashArrayIntro.push(this.dash);
-        pathIntro.push(new Path(this.midPath, this.dash, "bright", 0, 1, -1));
-        return pathIntro;
+        this.paths.push(new Path(this.midPath, this.dash, "bright", 0, 1, -1));
     },
     calcRightPath: function (deltaChipX= this.deltaChipX) {
         this.rightPath = copyPoints(this.midPath);
         this.rightPath = shiftPointsH(this.rightPath, deltaChipX);
-        var pathIntro = [];
-        pathIntro.push(new Path(this.rightPath, this.dash, "bright", 0, 1, -1));
-        return pathIntro;
+        this.paths.push(new Path(this.rightPath, this.dash, "bright", 0, 1, -1));
     }
 }
 

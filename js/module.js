@@ -50,10 +50,7 @@ class Circuit{
 
     setSides(){
         bottomSide.init(this.chip, this.config);
-        this.paths.push(bottomSide.calcLeftPath());
-        this.paths.push(bottomSide.calcMidPath());
-        this.paths.push(bottomSide.calcRightPath());
-
+        this.paths.push(bottomSide.paths);
 
         topSide.init(this.chip, this.config);
         this.paths.push(topSide.paths);
