@@ -5,7 +5,8 @@
  */
 
 /* drawVertices() will draw a polygon that contains at least two points */
-import Point from '../module/point.js';
+import {Point} from './module.js';
+
 var drawVertices = function (svg, points, dash, brightness, moveCircleH, moveCircleV, slopeFix) {
     var strokeWidth = 5;
     var circuitClass = "";

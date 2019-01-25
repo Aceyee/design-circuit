@@ -8,8 +8,7 @@
 /*****************************************************************************/
 /*              Introduction Animation Path for Blcok1                       */
 /*****************************************************************************/
-import Point from '../module/point.js';
-import Path from '../module/path.js';
+import {Point, Path} from './module.js';
 import {drawVertices,copyPoints, shiftPointsH} from './utils.js';
 
 //method for drawing polygons on bottom side 
@@ -24,8 +23,8 @@ var bottomSide = {
         // console.log(chip.width);
         // console.log(this.deltaChipX);
         this.calcLeftPath();
-        this.calcMidPath();
-        this.calcRightPath();
+        // this.calcMidPath();
+        // this.calcRightPath();
     },
     calcLeftPath: function (screenHeight = this.screenHeight, screenWidth = this.screenWidth, chip = this.chip, deltaChipX= this.deltaChipX) {
         var p1 = new Point(screenWidth / 2 - deltaChipX, screenHeight);
