@@ -101,9 +101,9 @@ var shiftPointsV = function (points, length) {
 }
 
 /* symmetryH() symmetry points horizontally, by the screen width*/
-var symmetryH = function (points) {
+var symmetryH = function (points, width) {
     for (var i = 0; i < points.length; i++) {
-        points[i].x = screenWidth - points[i].x;
+        points[i].x = width - points[i].x;
     }
     return points;
 }
@@ -129,4 +129,4 @@ var distance = function (p1, p2) {
     return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 }
 
-export {drawVertices, drawVerticesAfter, copyPoints, shiftPointsH};
+export {drawVertices, drawVerticesAfter, copyPoints, shiftPointsH, symmetryH};
