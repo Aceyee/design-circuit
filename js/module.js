@@ -1,7 +1,7 @@
 /* Chip class is used to calculate and store the positions and offsets
     of chips such as main chip, switch chip, and message board chip*/
 import {drawVertices, drawVerticesAfter} from '../js/utils.js';
-import {bottomSide, topSide} from '../js/path.js';
+import {bottomSide, topSide, leftSide, rightSide} from '../js/path.js';
 
 class Chip {
     /* id is passed as parameter to determine if is is main chip, 
@@ -55,6 +55,12 @@ class Circuit{
         topSide.init(this.chip, this.config);
         this.paths.push(topSide.paths);
 
+        leftSide.init(this.chip, this.config);
+        this.paths.push(leftSide.paths);
+
+
+        rightSide.init(this.chip, this.config);
+        this.paths.push(rightSide.paths);
     }
 }
 
