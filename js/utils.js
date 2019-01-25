@@ -5,6 +5,7 @@
  */
 
 /* drawVertices() will draw a polygon that contains at least two points */
+import Point from '../module/point.js';
 var drawVertices = function (svg, points, dash, brightness, moveCircleH, moveCircleV, slopeFix) {
     var strokeWidth = 5;
     var circuitClass = "";
@@ -80,7 +81,7 @@ var drawVerticesAfter = function (svg, points, dash, brightness, moveCircleH, mo
 
 }
 
-export {drawVertices, drawVerticesAfter};
+
 
 /* shiftPointsH() shifts points horizontally, given length */
 var shiftPointsH = function (points, length) {
@@ -126,3 +127,5 @@ var copyPoints = function (points) {
 var distance = function (p1, p2) {
     return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 }
+
+export {drawVertices, drawVerticesAfter, copyPoints, shiftPointsH};

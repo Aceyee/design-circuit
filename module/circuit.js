@@ -1,14 +1,22 @@
 import Point from './point.js';
 import Path from './path.js';
 import {drawVertices, drawVerticesAfter} from '../js/utils.js';
+import {bottomSide} from '../js/path.js';
 
 var strokeWidth = 5;
 
 class Circuit{
-    constructor(chip){
+    constructor(chip, config){
         this.chip = chip;
-        this.test();
+        this.config = config;
+        this.setSides();
+        // this.test();
     }
+
+    setSides(){
+        bottomSide.init(this.chip, this.config);
+    }
+
     test(){
         var p1 = new Point(100, 100);
         var p2 = new Point(100, 200);

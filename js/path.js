@@ -8,34 +8,55 @@
 /*****************************************************************************/
 /*              Introduction Animation Path for Blcok1                       */
 /*****************************************************************************/
+import Point from '../module/point.js';
+import Path from '../module/path.js';
+import {drawVertices,copyPoints, shiftPointsH} from './utils.js';
+
 //method for drawing polygons on bottom side 
 var bottomSide = {
     // include three straght lines, use for loop to draw line, and shift X to draw next
-    init: function () {
-        this.dash = screenHeight - chipMain.bottom - chipMain.border;
+    init: function (chip, config) {
+        this.chip = chip;
+        this.screenHeight = config.screenHeight;
+        this.screenWidth = config.screenWidth;
+        this.dash = this.screenHeight - chip.bottom - chip.border;
+        this.deltaChipX = chip.width / config.division;
+        // console.log(chip.width);
+        // console.log(this.deltaChipX);
         this.calcLeftPath();
         this.calcMidPath();
         this.calcRightPath();
     },
-    calcLeftPath: function () {
-        var p1 = new Point(screenWidth / 2 - deltaChipMainX, screenHeight);
-        var p2 = new Point(screenWidth / 2 - deltaChipMainX, chipMain.bottom + chipMain.border);
+    calcLeftPath: function (screenHeight = this.screenHeight, screenWidth = this.screenWidth, chip = this.chip, deltaChipX= this.deltaChipX) {
+        var p1 = new Point(screenWidth / 2 - deltaChipX, screenHeight);
+        var p2 = new Point(screenWidth / 2 - deltaChipX, chip.bottom + chip.border);
         this.leftPath = [p1, p2];
+        var pathIntro = [];
         pathIntro.push(new Path(this.leftPath, this.dash, "bright", 0, 1, -1));
+        for(let i=0; i<pathIntro.length; i++){
+            let path = pathIntro[i];
+            drawVertices(svg1, path.points, path.length, path.brightness, 
+                path.moveCircleH, path.moveCircleV, path.slopeFix);
+        }
     },
-    calcMidPath: function () {
+    calcMidPath: function (deltaChipX= this.deltaChipX) {
         this.midPath = copyPoints(this.leftPath);
-        this.midPath = shiftPointsH(this.midPath, deltaChipMainX);
+        this.midPath = shiftPointsH(this.midPath, deltaChipX);
+        var pointsArrayIntro = [];
+        var dashArrayIntro = [];
+        var pathIntro = [];
         pointsArrayIntro.push(this.midPath);
         dashArrayIntro.push(this.dash);
         pathIntro.push(new Path(this.midPath, this.dash, "bright", 0, 1, -1));
     },
-    calcRightPath: function () {
+    calcRightPath: function (deltaChipX= this.deltaChipX) {
         this.rightPath = copyPoints(this.midPath);
-        this.rightPath = shiftPointsH(this.rightPath, deltaChipMainX);
+        this.rightPath = shiftPointsH(this.rightPath, deltaChipX);
+        var pathIntro = [];
         pathIntro.push(new Path(this.rightPath, this.dash, "bright", 0, 1, -1));
     }
 }
+export var bottomSide;
 
 // method for drawing polygons on left side 
 var leftSide = {
