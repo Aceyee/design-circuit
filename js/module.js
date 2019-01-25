@@ -111,19 +111,6 @@ class Circuit{
     }
 }
 
-class Config {
-    constructor() {
-        this.screenWidth = $(window).width();
-        this.screenHeight = $(window).height();
-        this.strokeWidth = 5;
-        this.division = 9;
-        this.canvas = document.getElementById('canvas1');
-        this.canvas.width = this.screenWidth ;
-        this.canvas.height = this.screenHeight;
-        this.c = this.canvas.getContext('2d');
-        this.c.fillStyle = "rgba(1, 1, 1, 0.2)";
-    }
-}
 
 /* Point class contains x, y, and toString() */
 class Point {
@@ -280,4 +267,4 @@ class Cannonball {
     };
 }
 
-export { Chip, Config, Point, Path, Explosion, Particle, Cannonball, Circuit };
+export { Chip, Point, Path, Explosion, Particle, Cannonball, Circuit };
