@@ -9,7 +9,7 @@
 /*              Introduction Animation Path for Blcok1                       */
 /*****************************************************************************/
 import {Point, Path} from './module.js';
-import {copyPoints, shiftPointsH, symmetryH} from './utils.js';
+import {copyPoints, shiftPointsH, shiftPointsV, symmetryH, reverse} from './utils.js';
 
 //method for drawing polygons on bottom side 
 var bottomSide = {
@@ -36,11 +36,8 @@ var bottomSide = {
     calcMidPath: function (deltaChipX= this.deltaChipX) {
         this.midPath = copyPoints(this.leftPath);
         this.midPath = shiftPointsH(this.midPath, deltaChipX);
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var pointsArrayIntro = [];
-        var dashArrayIntro = [];
-        pointsArrayIntro.push(this.midPath);
-        dashArrayIntro.push(this.dash);
+        this.pathSparking = this.midPath;
+        this.dashSparking = this.dash;
         this.paths.push(new Path(this.midPath, this.dash, "bright", 0, 1, -1));
     },
     calcRightPath: function (deltaChipX= this.deltaChipX) {
@@ -83,11 +80,8 @@ var leftSide = {
         this.midPath = [p4, p3, p2, p1];
 
         this.dash2 = 2 * Math.sqrt(2) * 2 * deltaChipX + p2.y - p3.y;
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var pointsArrayIntro = [];
-        var dashArrayIntro = [];
-        pointsArrayIntro.push(this.midPath);
-        dashArrayIntro.push(this.dash2);
+        this.pathSparking = this.midPath;
+        this.dashSparking = this.dash2;
         this.paths.push(new Path(this.midPath, this.dash2, "bright", 1, 1, Math.sqrt(2) / 2));
     },
 
@@ -126,8 +120,8 @@ var rightSide = {
         this.midPath = copyPoints(leftSide.midPath);
         this.dash2 = leftSide.dash2;
         this.midPath = symmetryH(this.midPath, this.screenWidth);
-        // pointsArrayIntro.push(this.midPath);
-        // dashArrayIntro.push(this.dash2);
+        this.pathSparking = this.midPath;
+        this.dashSparking = this.dash2;
         this.paths.push(new Path(this.midPath, this.dash2, "bright", -1, 1, Math.sqrt(2) / 2));
     },
     calcBotPath: function () {
@@ -207,42 +201,49 @@ var topSide = {
 /*****************************************************************************/
 var leftCenterSide = {
     // include three polygon lines, draw them separately in three methods
-    init: function () {
-        this.triplePath = [];
-        this.triplePathReverse = [];
+    init: function (chip, config) {
+        this.chip = chip;
+        this.screenHeight = config.screenHeight;
+        this.screenWidth = config.screenWidth;
+        this.deltaChipX = chip.width / config.division;
+        // this.dash = chip.top - chip.border + (Math.sqrt(2) - 1) * this.deltaChipX;
+        // this.paths = [];
+
+        this.paths = [];
+        this.pathsReverse = [];
         this.calcMidPath();
         this.calcTopPath();
         this.calcBotPath();
     },
     /* for each draw method, decide the way points one by one, 
         and then push these (x,y)'s to an array*/
-    calcMidPath: function () {
-        var p1 = new Point(chip.left - chip.border, screenHeight / 2);
+    calcMidPath: function (chip = this.chip, deltaChipX = this.deltaChipX) {
+        var p1 = new Point(chip.left - chip.border, this.screenHeight / 2);
         var p2 = new Point(p1.x - 3 * deltaChipX, p1.y - 3 * deltaChipX);
         var p3 = new Point(0, p2.y);
         this.points1 = [p3, p2, p1];
         this.dash = p2.x + Math.sqrt(2) * 3 * deltaChipX;
-        this.triplePath.push(new Path(this.points1, this.dash, "bright", 1, 1, Math.sqrt(2) / 2));
+        this.paths.push(new Path(this.points1, this.dash, "bright", 1, 1, Math.sqrt(2) / 2));
     },
 
-    calcTopPath: function () {
+    calcTopPath: function (deltaChipX = this.deltaChipX) {
         this.points2 = copyPoints(this.points1);
         this.points2 = shiftPointsV(this.points2, -deltaChipX);
-        this.triplePath.push(new Path(this.points2, this.dash, "bright", 1, 1, Math.sqrt(2) / 2));
+        this.paths.push(new Path(this.points2, this.dash, "bright", 1, 1, Math.sqrt(2) / 2));
     },
 
-    calcBotPath: function () {
+    calcBotPath: function (deltaChipX = this.deltaChipX) {
         this.points3 = copyPoints(this.points1);
         this.points3 = shiftPointsV(this.points3, deltaChipX);
-        this.triplePath.push(new Path(this.points3, this.dash, "bright", 1, 1, Math.sqrt(2) / 2));
-        pathRandom.push(this.triplePath);
+        this.paths.push(new Path(this.points3, this.dash, "bright", 1, 1, Math.sqrt(2) / 2));
+        // pathRandom.push(this.paths);
         
-        for (let i = 0; i < this.triplePath.length; i++) {
-            let tempPoints = copyPoints(this.triplePath[i].points);
+        for (let i = 0; i < this.paths.length; i++) {
+            let tempPoints = copyPoints(this.paths[i].points);
             tempPoints = reverse(tempPoints);
-            this.triplePathReverse.push(new Path(tempPoints, this.dash, "bright", 1, 1, Math.sqrt(2) / 2));
+            this.pathsReverse.push(new Path(tempPoints, this.dash, "bright", 1, 1, Math.sqrt(2) / 2));
         }
-        pathRandomReverse.push(this.triplePathReverse);
+        // pathRandomReverse.push(this.pathsReverse);
     }
 }
 
@@ -365,7 +366,7 @@ var rightBottomSide = {
     }
 }
 
-export { bottomSide, topSide, leftSide, rightSide };
+export { bottomSide, topSide, leftSide, rightSide, leftCenterSide };
 /*****************************************************************************/
 /*            After-Introduction Animation Path for Blcok1 End               */
 /*****************************************************************************/
