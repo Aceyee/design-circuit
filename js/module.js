@@ -68,7 +68,7 @@ class Circuit{
         this.pathsSparking = [];
         this.dashesSparking = [];
         this.randomPaths = [];
-        this.randomPathReverse = [];
+        this.randomPathsReverse = [];
         this.setSides();
     }
 
@@ -83,15 +83,19 @@ class Circuit{
 
         leftSide.init(this.chip, this.config);
         this.paths.push(leftSide.paths);
+        this.pathsSparking.push(leftSide.pathSparking);
+        this.dashesSparking.push(leftSide.dashSparking);
 
         rightSide.init(this.chip, this.config);
         this.paths.push(rightSide.paths);
+        this.pathsSparking.push(rightSide.pathSparking);
+        this.dashesSparking.push(rightSide.dashSparking);
 
 
 
-        // leftCenterSide.init(this.chip, this.config);
-        // this.randomPaths.push(leftCenterSide.paths);
-        // this.randomPaths.push(leftCenterSide.pathsReverse);
+        leftCenterSide.init(this.chip, this.config);
+        this.randomPaths.push(leftCenterSide.paths);
+        this.randomPathsReverse.push(leftCenterSide.pathsReverse);
     }
 }
 

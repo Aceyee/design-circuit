@@ -1,5 +1,5 @@
 import {Chip, Config, Circuit, Cannonball, Explosion} from './module.js';
-import {drawVertices} from './utils.js';
+import {drawVertices, drawVerticesAfter} from './utils.js';
 
 var config = new Config();
 var chipMain = new Chip('chipMain');
@@ -74,7 +74,7 @@ function animate() {
         $(svg1after).empty();
         let index = Math.floor(Math.random() * 4);
         for (let i = 0; i < 3; i++) {
-          let path = pathRandom[index][i];
+          let path = circuit.randomPaths[index][i];
           cannonballs.push(new Cannonball(canvas.width / 2, canvas.height / 2, 2, cannonballColor, path.points, path.length));
           drawVerticesAfter(svg1after, path.points, path.length, "bright", path.moveCircleH, path.moveCircleV, path.slopeFix, false);
         }
@@ -86,7 +86,7 @@ function animate() {
       if (cannonballs.length < 3) {
         let index = Math.floor(Math.random() * 4);
         for (let i = 0; i < 3; i++) {
-          let path = pathRandomReverse[index][i];
+          let path = circuit.randomPathsReverse[index][i];
           cannonballs.push(new Cannonball(canvas.width / 2, canvas.height / 2, 2, cannonballColor, path.points, path.length));
           drawVerticesAfter(svg1after, path.points, path.length, "bright", path.moveCircleH, path.moveCircleV, path.slopeFix, true);
         }
