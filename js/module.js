@@ -10,6 +10,8 @@ class Chip {
     constructor(id) {
         this.id = id;
         this.getOffset();
+        this.getRelativeOffset();
+        this.getCorner();
     }
 
     /* getOffset get the offset, width, and height of that chip */
@@ -18,7 +20,6 @@ class Chip {
         this.offset = $('#' + id).offset();
         this.width = $('#' + id).width();
         this.height = $('#' + id).height();
-        this.getRelativeOffset();
     }
 
     /* getRelativeOffset get the border position of each chip. */
@@ -29,7 +30,6 @@ class Chip {
         this.top = offset.top;
         this.bottom = this.top + this.height;
         // console.log(this.left + " "+ this.right);
-        this.getCorner();
     }
 
     /* getCorner get the corner's position as a Point */
@@ -38,6 +38,34 @@ class Chip {
         this.topRight = new Point(this.right, this.top);
         this.botLeft = new Point(this.left, this.bottom);
         this.botRight = new Point(this.right, this.bottom);
+    }
+}
+
+class Circuit{
+    constructor(chip, config){
+        this.chip = chip;
+        this.config = config;
+        this.paths = [];
+        this.setSides();
+        // this.test();
+    }
+
+    setSides(){
+        bottomSide.init(this.chip, this.config);
+        this.paths.push(bottomSide.calcLeftPath());
+    }
+
+    test(){
+        var p1 = new Point(100, 100);
+        var p2 = new Point(100, 200);
+        this.leftPath = [p1, p2];
+        var pathIntro = [];
+        pathIntro.push(new Path(this.leftPath, 100, "bright", 0, 1, -1));
+        for(let i=0; i<pathIntro.length; i++){
+            let path = pathIntro[i];
+            drawVertices(svg1, path.points, path.length, path.brightness, 
+                path.moveCircleH, path.moveCircleV, path.slopeFix);
+        }
     }
 }
 
@@ -206,32 +234,5 @@ class Cannonball {
 }
 
 
-var strokeWidth = 5;
-
-class Circuit{
-    constructor(chip, config){
-        this.chip = chip;
-        this.config = config;
-        this.setSides();
-        // this.test();
-    }
-
-    setSides(){
-        bottomSide.init(this.chip, this.config);
-    }
-
-    test(){
-        var p1 = new Point(100, 100);
-        var p2 = new Point(100, 200);
-        this.leftPath = [p1, p2];
-        var pathIntro = [];
-        pathIntro.push(new Path(this.leftPath, 100, "bright", 0, 1, -1));
-        for(let i=0; i<pathIntro.length; i++){
-            let path = pathIntro[i];
-            drawVertices(svg1, path.points, path.length, path.brightness, 
-                path.moveCircleH, path.moveCircleV, path.slopeFix);
-        }
-    }
-}
 
 export { Chip, Config, Point, Path, Explosion, Particle, Cannonball, Circuit };

@@ -22,7 +22,7 @@ var bottomSide = {
         this.deltaChipX = chip.width / config.division;
         // console.log(chip.width);
         // console.log(this.deltaChipX);
-        this.calcLeftPath();
+        // this.calcLeftPath();
         // this.calcMidPath();
         // this.calcRightPath();
     },
@@ -32,11 +32,7 @@ var bottomSide = {
         this.leftPath = [p1, p2];
         var pathIntro = [];
         pathIntro.push(new Path(this.leftPath, this.dash, "bright", 0, 1, -1));
-        for(let i=0; i<pathIntro.length; i++){
-            let path = pathIntro[i];
-            drawVertices(svg1, path.points, path.length, path.brightness, 
-                path.moveCircleH, path.moveCircleV, path.slopeFix);
-        }
+        return pathIntro;
     },
     calcMidPath: function (deltaChipX= this.deltaChipX) {
         this.midPath = copyPoints(this.leftPath);
