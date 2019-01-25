@@ -1,7 +1,27 @@
 /* Chip class is used to calculate and store the positions and offsets
     of chips such as main chip, switch chip, and message board chip*/
-import {drawVertices, drawVerticesAfter} from '../js/utils.js';
-import {bottomSide, topSide, leftSide, rightSide} from '../js/path.js';
+import {bottomSide, topSide, leftSide, rightSide, leftCenterSide, leftBottomSide, rightCenterSide, rightBottomSide} from '../js/path.js';
+import { distance } from './utils.js';
+
+const second = 2;
+const fps = 60;
+const lambda = second * fps;
+const gravity = 0.6;
+
+var canvas = document.getElementById('canvas1');
+var c = canvas.getContext('2d');
+c.fillStyle = "rgba(1, 1, 1, 0.2)";
+
+const initialSpeedX = 8;
+const initialSpeedY = 6;
+const balanceSpeed = 1;
+const resistance = 0.1;
+const explosionParts = 5;
+
+/* other settings */
+const particleColor = "gold";
+const particleRadius = 1;
+const particleBounceTimes = 1;
 
 class Chip {
     /* id is passed as parameter to determine if is is main chip, 
@@ -45,22 +65,49 @@ class Circuit{
         this.chip = chip;
         this.config = config;
         this.paths = [];
+        this.pathsSparking = [];
+        this.dashesSparking = [];
+        this.randomPaths = [];
+        this.randomPathsReverse = [];
         this.setSides();
     }
 
     setSides(){
         bottomSide.init(this.chip, this.config);
         this.paths.push(bottomSide.paths);
+        this.pathsSparking.push(bottomSide.pathSparking);
+        this.dashesSparking.push(bottomSide.dashSparking);
 
         topSide.init(this.chip, this.config);
         this.paths.push(topSide.paths);
 
         leftSide.init(this.chip, this.config);
         this.paths.push(leftSide.paths);
-
+        this.pathsSparking.push(leftSide.pathSparking);
+        this.dashesSparking.push(leftSide.dashSparking);
 
         rightSide.init(this.chip, this.config);
         this.paths.push(rightSide.paths);
+        this.pathsSparking.push(rightSide.pathSparking);
+        this.dashesSparking.push(rightSide.dashSparking);
+
+
+
+        leftCenterSide.init(this.chip, this.config);
+        this.randomPaths.push(leftCenterSide.paths);
+        this.randomPathsReverse.push(leftCenterSide.pathsReverse);
+
+        leftBottomSide.init(this.chip, this.config);
+        this.randomPaths.push(leftBottomSide.paths);
+        this.randomPathsReverse.push(leftBottomSide.pathsReverse);
+
+        rightCenterSide.init(this.chip, this.config);
+        this.randomPaths.push(rightCenterSide.paths);
+        this.randomPathsReverse.push(rightCenterSide.pathsReverse);
+
+        rightBottomSide.init(this.chip, this.config);
+        this.randomPaths.push(rightBottomSide.paths);
+        this.randomPathsReverse.push(rightBottomSide.pathsReverse);
     }
 }
 
@@ -70,6 +117,11 @@ class Config {
         this.screenHeight = $(window).height();
         this.strokeWidth = 5;
         this.division = 9;
+        this.canvas = document.getElementById('canvas1');
+        this.canvas.width = this.screenWidth ;
+        this.canvas.height = this.screenHeight;
+        this.c = this.canvas.getContext('2d');
+        this.c.fillStyle = "rgba(1, 1, 1, 0.2)";
     }
 }
 
@@ -227,7 +279,5 @@ class Cannonball {
         c.restore();
     };
 }
-
-
 
 export { Chip, Config, Point, Path, Explosion, Particle, Cannonball, Circuit };
