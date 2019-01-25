@@ -29,38 +29,3 @@ body{
     height: 100%;
     z-index: 0;
 }
-
-/****************************** BLOCK 1 ***********************************/
-#block1{
-    background-color: black;
-}
-
-/****************************** BLOCK 2 ***********************************/
-#block2{
-    top:100%;
-    background:radial-gradient(#022B2F, black);
-}
-
-#slideContainer{
-    position: absolute;
-    border-radius: 1rem;
-    overflow: hidden;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    margin: 0 auto;
-}
-
-/****************************** BLOCK 3 ***********************************/
-#block3{
-    top:200%;
-    background:radial-gradient(#022B2F, black);
-}
-
-.card-message{
-    border-color: aqua;
-    background: #022B2F;
-}
-
-.card-header{color: aqua;}

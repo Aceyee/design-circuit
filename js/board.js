@@ -1,8 +1,8 @@
 import {Chip, Config, Circuit} from './module.js';
 import {drawVertices} from './utils.js';
 
-var chipMain = new Chip('chipMain');
 var config = new Config();
+var chipMain = new Chip('chipMain');
 var circuit = new Circuit(chipMain, config);
 
 for(let i =0; i<circuit.paths.length; i++){

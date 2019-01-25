@@ -45,32 +45,7 @@
     position: relative;
     top: 50%;
     transform: translate(0,-50%);
-}
-
-#chipMain p{
-    position: relative;
-    top: 50%;
     color: transparent;
     animation: flash 2s linear infinite;
     animation-delay: 2s;
-}
-
-#chipProject{
-    width: 90%;
-    height: 80%;
-    overflow: hidden;
-}
-
-#chipProject h1{
-    position: relative;
-}
-
-#chipMessage{
-    width: 90%;
-    height: 80%;
-    overflow: hidden;
-}
-
-#chipMessage h1{
-    position: relative;
 }
