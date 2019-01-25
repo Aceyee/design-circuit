@@ -5,7 +5,10 @@
  */
 
 /* drawVertices() will draw a polygon that contains at least two points */
+import {Point} from './module.js';
+
 var drawVertices = function (svg, points, dash, brightness, moveCircleH, moveCircleV, slopeFix) {
+    var strokeWidth = 5;
     var circuitClass = "";
     var socketClass = "";
     var lastIndex = points.length - 1;
@@ -36,6 +39,7 @@ var drawVertices = function (svg, points, dash, brightness, moveCircleH, moveCir
 }
 
 var drawVerticesAfter = function (svg, points, dash, brightness, moveCircleH, moveCircleV, slopeFix, reverse = false) {
+    var strokeWidth = 5; 
     var circuitClass = "";
     var socketClass = "";
     var lastIndex = points.length - 1;
@@ -78,6 +82,8 @@ var drawVerticesAfter = function (svg, points, dash, brightness, moveCircleH, mo
 
 }
 
+
+
 /* shiftPointsH() shifts points horizontally, given length */
 var shiftPointsH = function (points, length) {
     for (var i = 0; i < points.length; i++) {
@@ -95,9 +101,9 @@ var shiftPointsV = function (points, length) {
 }
 
 /* symmetryH() symmetry points horizontally, by the screen width*/
-var symmetryH = function (points) {
+var symmetryH = function (points, width) {
     for (var i = 0; i < points.length; i++) {
-        points[i].x = screenWidth - points[i].x;
+        points[i].x = width - points[i].x;
     }
     return points;
 }
@@ -122,3 +128,5 @@ var copyPoints = function (points) {
 var distance = function (p1, p2) {
     return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 }
+
+export {drawVertices, drawVerticesAfter, copyPoints, shiftPointsH, symmetryH};

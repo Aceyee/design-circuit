@@ -1,48 +1,75 @@
-/**
- *  Name: class.js 
- *  Author: Zihan Ye
- *  Reference: Particle, Explosion, and Cannonball are adapted from:
- *      https://christopherlis.com/projects/ 
- *  Description: Create helper classes such as Chip and Point
- *      for easier conductions. JavaScript 6
- */
-
 /* Chip class is used to calculate and store the positions and offsets
     of chips such as main chip, switch chip, and message board chip*/
+import {drawVertices, drawVerticesAfter} from '../js/utils.js';
+import {bottomSide, topSide, leftSide, rightSide} from '../js/path.js';
+
 class Chip {
     /* id is passed as parameter to determine if is is main chip, 
         switch chip, or message board chip*/
-    constructor(id, marginTopFix) {
+    constructor(id) {
         this.id = id;
-        this.marginTopFix = marginTopFix;
-        this.getOffset();
+        this.setOffset();
+        this.setRelativeOffset();
+        this.setCorner();
     }
 
     /* getOffset get the offset, width, and height of that chip */
-    getOffset(id = this.id) {
+    setOffset(id = this.id) {
         this.border = 25;
         this.offset = $('#' + id).offset();
         this.width = $('#' + id).width();
         this.height = $('#' + id).height();
-        this.getRelativeOffset();
     }
 
     /* getRelativeOffset get the border position of each chip. */
     // Relative to Parent, not to screen. left, right, top, and bottom
-    getRelativeOffset(offset = this.offset, marginTopFix = this.marginTopFix) {
+    setRelativeOffset(offset = this.offset) {
         this.left = offset.left;
-        this.right = screenWidth - this.left;
-        this.top = offset.top - marginTopFix * screenHeight;
-        this.bottom = screenHeight - this.top;
-        this.getCorner();
+        this.right = this.left + this.width;
+        this.top = offset.top;
+        this.bottom = this.top + this.height;
+        // console.log(this.left + " "+ this.right);
     }
 
     /* getCorner get the corner's position as a Point */
-    getCorner() {
+    setCorner() {
         this.topLeft = new Point(this.left, this.top);
         this.topRight = new Point(this.right, this.top);
         this.botLeft = new Point(this.left, this.bottom);
         this.botRight = new Point(this.right, this.bottom);
+    }
+}
+
+class Circuit{
+    constructor(chip, config){
+        this.chip = chip;
+        this.config = config;
+        this.paths = [];
+        this.setSides();
+    }
+
+    setSides(){
+        bottomSide.init(this.chip, this.config);
+        this.paths.push(bottomSide.paths);
+
+        topSide.init(this.chip, this.config);
+        this.paths.push(topSide.paths);
+
+        leftSide.init(this.chip, this.config);
+        this.paths.push(leftSide.paths);
+
+
+        rightSide.init(this.chip, this.config);
+        this.paths.push(rightSide.paths);
+    }
+}
+
+class Config {
+    constructor() {
+        this.screenWidth = $(window).width();
+        this.screenHeight = $(window).height();
+        this.strokeWidth = 5;
+        this.division = 9;
     }
 }
 
@@ -71,6 +98,34 @@ class Path{
     toString() {
         return this.length+" "+this.points;
     }
+}
+
+class Explosion {
+    constructor(cannonball) {
+        this.particles = [];
+        this.rings = [];
+        this.source = cannonball;
+        this.init();
+    }
+    init() {
+        for (var i = 0; i < explosionParts; i++) {
+            var dx = (Math.random() * initialSpeedX) - initialSpeedX/2;
+            var dy = (Math.random() * initialSpeedY) - initialSpeedY/2;
+            var radius = Math.random() * 0.8 + particleRadius;
+            this.particles.push(new Particle(this.source.x, this.source.y, dx, dy, radius, particleColor));
+        }
+    };
+
+    update() {
+        for (var i = 0; i < this.particles.length; i++) {
+            this.particles[i].update();
+
+            // Remove particles from scene one time to live is up
+            if (this.particles[i].timeToLive < 0) {
+                this.particles.splice(i, 1);
+            }
+        }
+    };
 }
 
 class Particle {
@@ -113,35 +168,6 @@ class Particle {
         c.fill();
         c.closePath();
         c.restore();
-    };
-}
-
-//   function Explosion(cannonball) {
-class Explosion {
-    constructor(cannonball) {
-        this.particles = [];
-        this.rings = [];
-        this.source = cannonball;
-        this.init();
-    }
-    init() {
-        for (var i = 0; i < explosionParts; i++) {
-            var dx = (Math.random() * initialSpeedX) - initialSpeedX/2;
-            var dy = (Math.random() * initialSpeedY) - initialSpeedY/2;
-            var radius = Math.random() * 0.8 + particleRadius;
-            this.particles.push(new Particle(this.source.x, this.source.y, dx, dy, radius, particleColor));
-        }
-    };
-
-    update() {
-        for (var i = 0; i < this.particles.length; i++) {
-            this.particles[i].update();
-
-            // Remove particles from scene one time to live is up
-            if (this.particles[i].timeToLive < 0) {
-                this.particles.splice(i, 1);
-            }
-        }
     };
 }
 
@@ -201,3 +227,7 @@ class Cannonball {
         c.restore();
     };
 }
+
+
+
+export { Chip, Config, Point, Path, Explosion, Particle, Cannonball, Circuit };

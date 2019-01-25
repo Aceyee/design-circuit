@@ -14,6 +14,10 @@ html{
     background: #00090C; 
 }
 
+body{
+    margin: 0;
+}
+
 #blocks{
     height: 100%;
     width: 100%;

@@ -5,6 +5,8 @@
  */
 
 /******************************* Constant *********************************/
+import Chip from '../module/chip.js';
+
 /* style settings */
 const strokeWidth = 5;
 const cannonballColor = "aqua";
@@ -49,20 +51,8 @@ var screenHeight = $(window).height();
 var svg1 = document.getElementById("svg1"); // get svg1 element
 var svg1after = document.getElementById("svg1after"); // get svg1 after element
 
-/* get the svg element on block2*/
-var svg2 = document.getElementById("svg2"); // get svg1 element
-
-/* get the svg element on block2*/
-var svg3 = document.getElementById("svg3"); // get svg1 element
-
 // create new Chip class: chipMain
-var chipMain = new Chip('chipMain', 0);
-
-// create new Chip class: chipProject
-var chipProject = new Chip('chipProject', 1);
-
-// create new Chip class: chipMessage
-var chipMessage = new Chip('chipMessage', 2);
+var chipMain = new Chip('chipMain');
 
 // divide the width by 9 for drawing socket (circle)
 var division = 9;
@@ -89,14 +79,6 @@ bottomSide.init();
 leftSide.init();
 rightSide.init();
 topSide.init();
-
-// initialize paths for introduction animations on block2
-block2BottomSide.init();
-block2TopSide.init();
-
-// initialize paths for introduction animations on block3
-block3BottomSide.init();
-block3TopSide.init();
 
 // initialize paths for after-introduction random animations
 leftCenterSide.init();
