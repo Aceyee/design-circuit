@@ -1,6 +1,6 @@
 /* Chip class is used to calculate and store the positions and offsets
     of chips such as main chip, switch chip, and message board chip*/
-import {bottomSide, topSide, leftSide, rightSide, leftCenterSide, leftBottomSide, rightCenterSide, rightBottomSide} from '../js/path.js';
+import {bottomSide, topSide, leftSide, rightSide, leftCenterSide, leftBottomSide, rightCenterSide, rightBottomSide, testSide} from '../js/path.js';
 import { distance } from './utils.js';
 
 const second = 2;
@@ -36,9 +36,10 @@ class Chip {
     /* getOffset get the offset, width, and height of that chip */
     setOffset(id = this.id) {
         this.border = 25;
-        this.offset = $('#' + id).offset();
+        this.offset = $('#' + id).position();
         this.width = $('#' + id).width();
         this.height = $('#' + id).height();
+        // console.log(this.offset);
     }
 
     /* getRelativeOffset get the border position of each chip. */
@@ -69,7 +70,13 @@ class Circuit{
         this.dashesSparking = [];
         this.randomPaths = [];
         this.randomPathsReverse = [];
+        // this.test();
         this.setSides();
+    }
+
+    test(){
+        testSide.init(this.chip, this.config);
+        this.paths.push(testSide.paths);
     }
 
     setSides(){

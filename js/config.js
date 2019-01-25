@@ -7,6 +7,8 @@ class Config {
     }
 
     setGeneral(){
+        // this.screenWidth = $('.board').width();
+        // this.screenHeight = $('.board').height();
         this.screenWidth = $(window).width();
         this.screenHeight = $(window).height();
         this.division = 9;
