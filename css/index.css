@@ -3,24 +3,12 @@
  *  Description: style sheets for main page
  */
 
-/*
- *  z-index:
- *   1 : chip modal
- *   0 : bg gradient
- *  -9 : svg
- *  -10: canvas
- */
 html{ 
     background: #00090C; 
 }
 
 body{
     margin: 0;
-}
-
-#blocks{
-    height: 100%;
-    width: 100%;
 }
 
 .block{
