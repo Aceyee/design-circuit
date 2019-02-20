@@ -1,4 +1,5 @@
-import {Chip, Config, Circuit, Cannonball, Explosion} from './module.js';
+import Config from './config.js';
+import {Chip, Circuit, Cannonball, Explosion} from './module.js';
 import {drawVertices, drawVerticesAfter} from './utils.js';
 
 var config = new Config();
@@ -14,13 +15,8 @@ for(let i =0; i<circuit.paths.length; i++){
     }
 }
 
-// var c = config.c;
-// var canvas = config.canvas;
-var canvas = document.getElementById('canvas1');
-canvas.width = config.screenWidth;
-canvas.height = config.screenHeight;
-var c = canvas.getContext('2d');
-c.fillStyle = "rgba(1, 1, 1, 0.2)";
+var canvas = config.canvas;
+var c = config.c;
 
 var cannonballs = [];
 var explosions = [];
@@ -28,12 +24,6 @@ var input = false;
 var end = false;
 var count = 0;
 const period = 10;
-
-
-
-const particleColor = "gold";
-const particleRadius = 1;
-const particleBounceTimes = 1;
 
 const cannonballColor = "aqua";
 
@@ -44,7 +34,8 @@ function animate() {
   
     if (!end) {
       for (let i = 0; i < circuit.pathsSparking.length; i++) {
-        cannonballs.push(new Cannonball(canvas.width / 2, canvas.height / 2, 2, cannonballColor, circuit.pathsSparking[i], circuit.dashesSparking[i]));
+        let path = circuit.pathsSparking[i];
+        cannonballs.push(new Cannonball(canvas.width / 2, canvas.height / 2, 2, cannonballColor, path, circuit.dashesSparking[i]));
       }
     }
     end = true;

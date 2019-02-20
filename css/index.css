@@ -3,13 +3,6 @@
  *  Description: style sheets for main page
  */
 
-/*
- *  z-index:
- *   1 : chip modal
- *   0 : bg gradient
- *  -9 : svg
- *  -10: canvas
- */
 html{ 
     background: #00090C; 
 }
@@ -18,14 +11,8 @@ body{
     margin: 0;
 }
 
-#blocks{
-    height: 100%;
-    width: 100%;
-}
-
-.block{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+.board{
+    position: relative; 
+    height:700px; 
+    width:100%;
 }

@@ -11,6 +11,7 @@
 import {Point, Path} from './module.js';
 import {copyPoints, shiftPointsH, shiftPointsV, symmetryH, reverse} from './utils.js';
 
+
 //method for drawing polygons on bottom side 
 var bottomSide = {
     // include three straght lines, use for loop to draw line, and shift X to draw next
@@ -379,7 +380,25 @@ var rightBottomSide = {
     }
 }
 
-export { bottomSide, topSide, leftSide, rightSide, leftCenterSide, leftBottomSide, rightCenterSide, rightBottomSide };
+var testSide = {
+    // include three straght lines, use for loop to draw line, and shift X to draw next
+    init: function (chip, config) {
+        this.chip = chip;
+        this.screenHeight = config.screenHeight;
+        this.screenWidth = config.screenWidth;
+        this.dash = this.screenHeight - chip.bottom - chip.border;
+        this.deltaChipX = chip.width / config.division;
+        this.paths = [];
+        this.calTest();
+    },
+    calTest:function(){
+        var p1 = new Point(100, 100);
+        var p2 = new Point(100, 100);
+        this.testPath = [p1, p2];
+        this.paths.push(new Path(this.testPath, this.dash, "bright", 0, 1, -1));
+    },
+}
+export { bottomSide, topSide, leftSide, rightSide, leftCenterSide, leftBottomSide, rightCenterSide, rightBottomSide, testSide };
 /*****************************************************************************/
 /*            After-Introduction Animation Path for Blcok1 End               */
 /*****************************************************************************/

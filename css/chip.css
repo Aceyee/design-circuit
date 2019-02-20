@@ -5,7 +5,7 @@
  */
 
 .chip {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -21,19 +21,6 @@
     border-radius: 2rem;
     animation: show 1000ms ease forwards;
     animation-delay: 2s;
-}
-
-.chip-content{
-    width:80%;
-    height: 80%;
-    margin:0 auto;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    border-top-left-radius:0.75rem;
-    border-bottom-left-radius:0.75rem;
-    border-top-right-radius:0.75rem;
-    border-bottom-right-radius:0.75rem;
-    color: black;
 }
 
 #chipMain{
