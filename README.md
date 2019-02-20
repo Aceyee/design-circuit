@@ -24,4 +24,4 @@ This is a ciruit board style design
 
 # License
 
-Licensed under the [MIT License](LICENSE).
+Licensed under the [MIT License](LICENSE.md).
