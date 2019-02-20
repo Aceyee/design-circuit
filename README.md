@@ -21,3 +21,7 @@ This is a ciruit board style design
 # Author
 
 * **Zihan Ye** - *Initial work* - [Aceyee](https://github.com/Aceyee)
+
+# License
+
+Licensed under the [MIT License](LICENSE).
