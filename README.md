@@ -2,7 +2,7 @@
 
 This is a ciruit board style design
 
-![Alt Text](https://github.com/Aceyee/Grid/blob/master/app/src/main/psd/demo2.gif)
+![Alt Text](https://github.com/Aceyee/design-circuit/blob/master/preview.gif)
 
 # Construction
 
